@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steve Jobs Tribute Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000; /* Set background to black */
+            color: #fff; /* Set text color to white */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.1); /* Transparent white background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add shadow */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #fff;
+            margin-top: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Add image shadow */
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1em;
+            text-align: center;
+            margin-top: 20px;
+            color: #aaa;
+        }
+
+        .source {
+            font-style: normal;
+            text-align: right;
+            color: #ccc;
+        }
+
+        .reveal-button {
+            display: block;
+            margin: 0 auto 30px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .reveal-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Steve Jobs</h1>
+        <img src="steve_jobs.jpg" alt="Steve Jobs Image">
+        <a href="#" class="reveal-button" onclick="revealText()">Reveal Tribute</a>
+        <div class="hidden" id="tributeText">
+            <p>Steve Jobs was a visionary, innovator, and pioneer in the world of technology. As the co-founder of Apple Inc., he revolutionized the way we communicate, work, and live.</p>
+            
+            <p>His relentless pursuit of excellence and his passion for design and simplicity transformed industries and touched the lives of millions around the globe.</p>
+            
+            <p>Jobs' ability to marry technology with humanities made him stand out. He didn't just create products; he crafted experiences that resonated with people on a profound level.</p>
+            
+            <p>Even in the face of challenges, Steve Jobs remained resilient, never compromising on his vision. His famous words, "<span class="quote">Stay hungry, stay foolish</span>," continue to inspire countless individuals to dream big and think different.</p>
+            
+            <p class="source">- Steve Jobs</p>
+        </div>
+    </div>
+
+    <script>
+        function revealText() {
+            document.getElementById("tributeText").classList.remove("hidden");
+            document.querySelector(".reveal-button").style.display = "none"; 
+        }
+    </script>
+</body>
+</html>
