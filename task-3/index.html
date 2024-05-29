@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('bg.jpg'); 
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            
+        }
+        .task-form {
+            width: 90%;
+            background-color: rgba(255, 255, 255, 0.3); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(114, 113, 113, 0.1);
+            margin-right: 60px; 
+        }
+        .task-form h2 {
+            margin-top: 0;
+            background-color: rgba(255, 255, 255, 0.3); 
+        }
+        .task-form input[type="text"],
+        .task-form textarea {
+            width: 90%;
+            margin-bottom: 10px;
+            /*padding: 10px;*/
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            background-color: rgba(255, 255, 255, 0.5); 
+        }
+        .task-form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.5); 
+        }
+        .task-list {
+            width: 90%;
+            background-color: rgba(255, 255, 255, 0.5); 
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 20px; 
+        }
+        .task-list h2 {
+            margin-top: 0;
+        }
+        .task-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .task input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #777;
+        }
+        .delete-btn {
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="task-form">
+            <h2>Add New Task</h2>
+            <form id="taskForm">
+                <input type="text" id="titleInput" placeholder="Title">
+                <textarea id="descriptionInput" placeholder="Description"></textarea>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+        <div class="task-list">
+            <h2>Tasks</h2>
+            <ul id="pendingTasks" class="task-list"></ul>
+        </div>
+    </div>
+
+    <script>
+       document.addEventListener("DOMContentLoaded", function() {
+    const taskForm = document.getElementById("taskForm");
+    const titleInput = document.getElementById("titleInput");
+    const descriptionInput = document.getElementById("descriptionInput");
+    const pendingTasksList = document.getElementById("pendingTasks");
+
+    taskForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const titleText = titleInput.value.trim();
+        const descriptionText = descriptionInput.value.trim();
+        if (titleText !== "" && descriptionText !== "") {
+            addTask(titleText, descriptionText);
+            titleInput.value = "";
+            descriptionInput.value = "";
+        }
+    });
+
+    function addTask(titleText, descriptionText) {
+        const li = document.createElement("li");
+        li.className = "task";
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        const taskDiv = document.createElement("div");
+        const titlePara = document.createElement("p");
+        titlePara.textContent = "Title: " + titleText;
+        const descriptionPara = document.createElement("p");
+        descriptionPara.textContent = "Description: " + descriptionText;
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "delete-btn";
+        deleteBtn.textContent = "Delete";
+        taskDiv.appendChild(titlePara);
+        taskDiv.appendChild(descriptionPara);
+        li.appendChild(checkbox);
+        li.appendChild(taskDiv);
+        li.appendChild(deleteBtn);
+        pendingTasksList.appendChild(li);
+
+        checkbox.addEventListener("change", function() {
+            if (checkbox.checked) {
+                titlePara.classList.add("completed");
+                descriptionPara.classList.add("completed");
+            } else {
+                titlePara.classList.remove("completed");
+                descriptionPara.classList.remove("completed");
+            }
+        });
+
+        deleteBtn.addEventListener("click", function() {
+            li.remove();
+        });
+    }
+});
+
+    </script>
+</body>
+</html>
